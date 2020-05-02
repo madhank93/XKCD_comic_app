@@ -1,8 +1,12 @@
 class XKCD {
   String id;
   String imageURL;
+  String safeTitle;
 
-  XKCD(this.id, this.imageURL);
+  XKCD(this.id, this.imageURL, this.safeTitle);
+
+  XKCD.fromMap(Map<String, dynamic> map): id=map['num'], imageURL=map['img'], safeTitle=map['safe_title'];
+
 }
 
 abstract class XKCDRepo {

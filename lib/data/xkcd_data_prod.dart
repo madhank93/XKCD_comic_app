@@ -15,6 +15,6 @@ class ProdXKCDRepo implements XKCDRepo {
     if (statusCode != 200 || response.body == null) {
       throw new FetchDataException("An error occured while fetching data: [Status Code: $statusCode]");
     }
-    return responseBody.map((c) =>new XKCD.fromMap(c))
+    return responseBody.map((c) => XKCD.fromMap(c)).toList();
   }
 }
