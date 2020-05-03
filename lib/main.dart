@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:fluttermvpillustrativeapp/data/dependency_injection.dart';
+import 'package:fluttermvpillustrativeapp/HomePage.dart';
 
 void main() {
-  Injector.configure(Flavor.PROD);
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return null;
+    return MaterialApp(
+      theme: ThemeData(
+        primarySwatch: Colors.red,
+        primaryColor: Colors.orange,
+      ),
+      home: HomePage(),
+    );
   }
-
 }

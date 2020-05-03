@@ -1,25 +1,15 @@
 class XKCD {
-  String id;
-  String imageURL;
-  String safeTitle;
+  final int id;
+  final String imageURL;
+  final String safeTitle;
 
-  XKCD(this.id, this.imageURL, this.safeTitle);
+  XKCD({this.id, this.imageURL, this.safeTitle});
 
-  XKCD.fromMap(Map<String, dynamic> map): id=map['num'], imageURL=map['img'], safeTitle=map['safe_title'];
-
-}
-
-abstract class XKCDRepo {
-  Future<List<XKCD>> fetchComicPost();
-}
-
-class FetchDataException implements Exception {
-  final _message;
-
-  FetchDataException([this._message]);
-
-  String toString() {
-    if (_message == null) return "Exception";
-    return "Exception: $_message";
+  factory XKCD.fromJson(Map<String, dynamic> json){
+    return XKCD(
+    id: json['num'],
+    imageURL:json['img'],
+    safeTitle:json['safe_title'],
+    );
   }
 }

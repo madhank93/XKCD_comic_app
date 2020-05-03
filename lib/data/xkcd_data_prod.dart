@@ -3,18 +3,31 @@ import 'dart:convert';
 import 'dart:async';
 import 'package:fluttermvpillustrativeapp/data/xkcd_data.dart';
 
-class ProdXKCDRepo implements XKCDRepo {
+class ProdXKCDRepo {
   String baseURL = "http://xkcd.com/";
 
-  @override
-  Future<List<XKCD>> fetchComicPost() async {
+  Future<XKCD> fetchComicPost() async {
     http.Response response = await http.get(baseURL + "info.0.json");
-    final List responseBody = jsonDecode(response.body);
+    final responseBody = json.decode(response.body);
     final statusCode = response.statusCode;
 
-    if (statusCode != 200 || response.body == null) {
-      throw new FetchDataException("An error occured while fetching data: [Status Code: $statusCode]");
+    if (response.statusCode == 200) {
+      // If the server did return a 200 OK response,
+      // then parse the JSON.
+      return XKCD.fromJson(json.decode(response.body));
     }
-    return responseBody.map((c) => XKCD.fromMap(c)).toList();
+  }
+
+  Future<XKCD> fetchComicPostURL(int count) async {
+    http.Response response = await http.get(baseURL+count.toString()+"/"+"info.0.json");
+    final responseBody = json.decode(response.body);
+    final statusCode = response.statusCode;
+
+    if (response.statusCode == 200) {
+      // If the server did return a 200 OK response,
+      // then parse the JSON.
+      print(XKCD.fromJson(json.decode(response.body)).imageURL);
+      return XKCD.fromJson(json.decode(response.body));
+    }
   }
 }
