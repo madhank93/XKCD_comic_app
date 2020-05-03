@@ -26,7 +26,6 @@ class ProdXKCDRepo {
     if (response.statusCode == 200) {
       // If the server did return a 200 OK response,
       // then parse the JSON.
-      print(XKCD.fromJson(json.decode(response.body)).imageURL);
       return XKCD.fromJson(json.decode(response.body));
     }
   }
