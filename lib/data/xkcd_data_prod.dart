@@ -8,8 +8,6 @@ class ProdXKCDRepo {
 
   Future<XKCD> fetchComicPost() async {
     http.Response response = await http.get(baseURL + "info.0.json");
-    final responseBody = json.decode(response.body);
-    final statusCode = response.statusCode;
 
     if (response.statusCode == 200) {
       // If the server did return a 200 OK response,
@@ -20,8 +18,6 @@ class ProdXKCDRepo {
 
   Future<XKCD> fetchComicPostURL(int count) async {
     http.Response response = await http.get(baseURL+count.toString()+"/"+"info.0.json");
-    final responseBody = json.decode(response.body);
-    final statusCode = response.statusCode;
 
     if (response.statusCode == 200) {
       // If the server did return a 200 OK response,
