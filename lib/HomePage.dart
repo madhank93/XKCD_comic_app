@@ -23,6 +23,7 @@ class _HomePageState extends State<HomePage> {
   static int maxCount = count;
   String imageURL;
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
   @override
   void initState() {
     super.initState();
@@ -95,6 +96,11 @@ class _HomePageState extends State<HomePage> {
                         iconSize: 40,
                         icon: Icon(Icons.chevron_left),
                         onPressed: () => previous()),
+                    Text(
+                      "${snapshot.data.id}",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                    ),
                     IconButton(
                         iconSize: 40,
                         icon: Icon(Icons.chevron_right),
